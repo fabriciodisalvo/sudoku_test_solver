@@ -2,6 +2,7 @@ from sudoku_class import Sudoku
 from solver_class import Solver
 import time
 
+
 def print_stats(stats_list):
     rolling_sum = 0
     rolling_count = 0
@@ -19,6 +20,7 @@ def print_stats(stats_list):
     print("|", 'Average time of process : {}'.format(rolling_sum / rolling_count).center(57), "|")
     print(' -' * 30)
     print()
+
 
 sudoku_map_list = {
     'completed': [1, 2, 3, 4, 5, 6, 7, 8, 9,
@@ -88,8 +90,13 @@ sudoku_map_list = {
 
 stats_list = []
 
-
-solve_method = int(input(' Solve methods: \n Brute Force > 0 \n BF Graphic  > 1 \n Best Guess  > 2 \n BG Graphic  > 3 \n BG Improvd  > 4 \n  \n Choose method ? '))
+solve_method = int(input(' Solve methods: \n \
+                         Brute Force > 0 \n \
+                         BF Graphic  > 1 \n \
+                         Best Guess  > 2 \n \
+                         BG Graphic  > 3 \n \
+                         BG Improvd  > 4 \n  \n \
+                         Choose method ? '))
 
 for i in sudoku_map_list.keys():
     this_sudoku_stats = []
