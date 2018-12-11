@@ -174,6 +174,29 @@ class Solver:
         else:
             sudoku_map[most_relevant_position] = 0
 
+    def solve_hybrid(self, sudoku_input_map):
+        sudoku_map = sudoku_input_map
+        try:
+            last_changed_position = sudoku_map.index(0)
+            all_relatives = self.find_related_groups(last_changed_position)
+            all_relative_values = [sudoku_map[x] for x in all_relatives]
+            possible_guesses_for_this_location = [x for x in self.possible_guesses if x not in all_relative_values]
+            if len(possible_guesses_for_this_location) > 0:
+                for x in possible_guesses_for_this_location:
+                    self.path_list.append(last_changed_position + 1)
+                    sudoku_map[last_changed_position] = x
+                    if len(self.path_list) > 100:
+                        if self.solve_version_03(sudoku_map):
+                            return [sudoku_map, self.path_list, len(self.path_list)]
+                    else:
+                        if self.solve_hybrid(sudoku_map):
+                            return [sudoku_map, self.path_list, len(self.path_list)]
+                sudoku_map[last_changed_position] = 0
+            else:
+                sudoku_map[last_changed_position] = 0
+        except ValueError:
+            return [sudoku_map, self.path_list, len(self.path_list)]
+
     def solve(self, sudoku_input_map, solve_method=4):
         if solve_method == 0:
             return self.solve_version_01(sudoku_input_map)
@@ -185,5 +208,13 @@ class Solver:
             return self.solve_version_02_graphic(sudoku_input_map)
         elif solve_method == 4:
             return self.solve_version_03(sudoku_input_map)
+        elif solve_method == 5:
+            return self.solve_hybrid(sudoku_input_map)
+        elif solve_method == 6:
+            blank_indices = [i for i, x in enumerate(sudoku_input_map) if x == 0]
+            if len(blank_indices) < 46:
+                return self.solve_version_01(sudoku_input_map)
+            else:
+                return self.solve_version_03(sudoku_input_map)
         else:
             print('Not a valid solve method')

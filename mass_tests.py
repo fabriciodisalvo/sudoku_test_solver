@@ -46,7 +46,9 @@ solve_method = int(input(' Solve methods: \n \
                          BF Graphic  > 1 \n \
                          Best Guess  > 2 \n \
                          BG Graphic  > 3 \n \
-                         BG Improvd  > 4 \n  \n \
+                         BG Improvd  > 4 \n \
+                         BF/G Hybrid > 5 \n \
+                         Selective   > 6 \n \n \
                          Choose method ? '))
 
 
