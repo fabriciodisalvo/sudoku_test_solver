@@ -1,4 +1,5 @@
 from sudoku_class import Sudoku
+import os
 
 
 class Solver:
@@ -62,7 +63,7 @@ class Solver:
                 for x in possible_guesses_for_this_location:
                     self.path_list.append(last_changed_position + 1)
                     sudoku_map[last_changed_position] = x
-                    # os.system('clear')  # CONSOLE PROGRESS DYNAMIC VIEW
+                    os.system('clear')  # CONSOLE PROGRESS DYNAMIC VIEW
                     print('\n', 'Testing values :')  # CONSOLE PROGRESS DYNAMIC VIEW
                     Sudoku(sudoku_map).display()  # CONSOLE PROGRESS DYNAMIC VIEW
                     print(' Path lenght : {}'.format(len(self.path_list)))  # CONSOLE PROGRESS DYNAMIC VIEW
@@ -126,7 +127,7 @@ class Solver:
             for x in most_relevant_position_options:
                 self.path_list.append(most_relevant_position + 1)
                 sudoku_map[most_relevant_position] = x
-                # os.system('clear')  # CONSOLE PROGRESS DYNAMIC VIEW
+                os.system('clear')  # CONSOLE PROGRESS DYNAMIC VIEW
                 print('\n', 'Testing values :')  # CONSOLE PROGRESS DYNAMIC VIEW
                 Sudoku(sudoku_map).display()  # CONSOLE PROGRESS DYNAMIC VIEW
                 print(' Path lenght : {}'.format(len(self.path_list)))  # CONSOLE PROGRESS DYNAMIC VIEW

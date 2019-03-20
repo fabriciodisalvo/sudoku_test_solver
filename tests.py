@@ -1,9 +1,11 @@
 from sudoku_class import Sudoku
 from solver_class import Solver
 import time
+import os
 
 
 def print_stats(stats_list):
+    os.system('clear')
     rolling_sum = 0
     rolling_count = 0
     print()
@@ -98,6 +100,8 @@ sudoku_map_list = {
     }
 
 stats_list = []
+
+os.system('clear')
 
 solve_method = int(input(' Solve methods: \n \
                          Brute Force > 0 \n \
